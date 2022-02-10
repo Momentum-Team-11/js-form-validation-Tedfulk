@@ -54,3 +54,8 @@
 .input-valid > input {
   border-color: #22c55e;
 }
+
+input:invalid {
+  border: #dc2626 solid 3px;
+  background: #fffafa;
+}

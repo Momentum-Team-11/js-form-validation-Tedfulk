@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Form Validation</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
   </head>
   <body>
     <div class="container">
@@ -11,39 +12,39 @@
       <form id="parking-form">
         <div class="input-field" id="name-field">
           <label for="name">Name</label>
-          <input class="input-valid input-invalid" id="name" type="text" required>
+          <input id="name" type="text" required>
         </div>
         <div class="input-field" id="car-field">
           <label for="car-year">Car</label>
           <div class="input-group">
-            <input class="input-valid input-invalid" id="car-year" type="text" placeholder="Year" required>
-            <input class="input-valid input-invalid" id="car-make" type="text" placeholder="Make" required>
-            <input class="input-valid input-invalid" id="car-model" type="text" placeholder="Model" required>
+            <input id="car-year" type="number" min="1900" placeholder="Year" required>
+            <input id="car-make" type="text" placeholder="Make" required>
+            <input id="car-model" type="text" placeholder="Model" required>
           </div>
         </div>
         <div class="input-field" id="start-date-field">
           <label for="start-date">Date parking</label>
-          <input class="input-valid input-invalid" id="start-date" type="date" required>
+          <input id="start-date" type="date" required>
         </div>
         <div class="input-field" id="days-field">
           <label for="days">Number of days</label>
-          <input class="input-valid input-invalid" id="days" type="text" required>
+          <input id="days" type="number" min="1" max="30" required>
         </div>
         <div class="input-field" id="credit-card-field">
           <label for="credit-card">Credit Card</label>
-          <input class="input-valid input-invalid" id="credit-card" type="text" required>
+          <input id="credit-card" type="number" required>
         </div>
         <div class="row">
           <div class="col">
             <div class="input-field" id="cvv-field">
               <label for="cvv">CVV</label>
-              <input class="input-valid input-invalid" id="cvv" type="text" required>
+              <input id="cvv" type="text" pattern="[0-9]{3}" placeholder="###" title="CVV must be 3 digits."required>
             </div>
           </div>
           <div class="col">
             <div class="input-field" id="expiration-field">
               <label for="expiration">Expiration</label>
-              <input class="input-valid input-invalid" id="expiration" type="text" placeholder="MM/YY" required>
+              <input id="expiration" type="text" placeholder="MM/YY" title="Must be three numbers"required>
             </div>
           </div>
         </div>
@@ -52,6 +53,10 @@
         </div>
       </form>
       <div id="total"></div>
-      <script src="script.js"></script>
+      <script src="script.js">
+        document.querySelectorAll('.invalid(.input)').forEach( inpEl => {
+          inpEl.addEventListener('input', () => inpEl.parentElement.removeAttribute('class'));
+        })
+      </script>
   </body>
 </html>
