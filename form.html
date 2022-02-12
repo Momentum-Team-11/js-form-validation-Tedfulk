@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <title>Form Validation</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
     <div class="container">
       <h1>Pre-paid Parking Form</h1>
+      <div id="msgDiv"></div>
       <form id="parking-form">
         <div class="input-field" id="name-field">
           <label for="name">Name</label>
@@ -28,11 +29,11 @@
         </div>
         <div class="input-field" id="days-field">
           <label for="days">Number of days</label>
-          <input id="days" type="number" min="1" max="30" required>
+          <input id="days" type="number" min="1" max="30" placeholder="1-30 days" step="1"required>
         </div>
         <div class="input-field" id="credit-card-field">
           <label for="credit-card">Credit Card</label>
-          <input id="credit-card" type="number" required>
+          <input id="credit-card" type="text" required>
         </div>
         <div class="row">
           <div class="col">
@@ -44,7 +45,7 @@
           <div class="col">
             <div class="input-field" id="expiration-field">
               <label for="expiration">Expiration</label>
-              <input id="expiration" type="text" placeholder="MM/YY" title="Must be three numbers"required>
+              <input id="expiration" type="text" placeholder="MM/YY" pattern="[0-9]{2}/[0-9]{2}"  title="Must be after current month" required>
             </div>
           </div>
         </div>
@@ -52,11 +53,7 @@
           <button id="submit-button" type="submit">Make reservation</button>
         </div>
       </form>
-      <div id="total"></div>
-      <script src="script.js">
-        document.querySelectorAll('.invalid(.input)').forEach( inpEl => {
-          inpEl.addEventListener('input', () => inpEl.parentElement.removeAttribute('class'));
-        })
-      </script>
+      <div id="total">Total amount: $</div>
+      
   </body>
 </html>
