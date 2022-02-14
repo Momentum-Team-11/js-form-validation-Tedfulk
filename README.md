@@ -44,6 +44,7 @@ The requirements have changed for calculating cost. The new cost is $5 per weekd
 need to give values to weekdays $5 and weekends $7
  create an array of the days
  need to figure out how to loop the days-->
+ <!-- for loop needs to go around the number of days for however many of days they are parking. for loop needs to push onto the array that will then check to see if it is a weekend or weekday and then it will add 5 or 7 to the sum -->
 
 ### Step 6
 
