@@ -28,71 +28,93 @@ todayDate = yyyy + '-' + mm + '-' + dd
 // startDate.value = todayDate
 startDate.min = todayDate
 
-// for loop needs to go around the number of days for however many of days they are parking. for loop needs to push onto the array that will then check to see if it is a weekend or weekday and then it will add 5 or 7 to the sum
-let d = Date(startDate.value)
-let day = days[d.getDay()]
-console.log(day)
-function isWeekend(day) {
- if (day.substring(0, 3) === "Sat" || "Sun"){
-  return true
- } else {
-  return false
-}}
-let i = 0
-while (i < day) {
-  i++;
-  
-}
-
-//  for (let today of weekDay) {
-//  if isWeekend(today) {
-//   let finalTotal += "7"
-  
-//  } else {
-//   finalTotal += "5"
-//  }
-//  }
-
-// };
-// let dd = d.getDate()
 
 
-form.addEventListener('submit', (e) => {
+
+
+
+submit.addEventListener('click', (e) => {
   e.preventDefault()
-  validateForm()
-  formIsValid = true
-});
-function validateForm() {
-    removeMessage()
-    // validateExp()
-    if (formIsValid) {
-    showMessage('Success, parking is paid for!')
+  let numOfDay = document.querySelector('#days')
+  // let numOfDays = numOfDay.value * 5;
+  let d = new Date(startDate.value)
+  // let day = days[d.getDay()]
+  let totally = 0 
+  for (let i = 0; i < numOfDay.value; i++) {
+    d.setDate(d.getDate() + 1)
+    console.log(d.getDay())
+    console.log(days[d.getDay()])
+    let w = isWeekend(d)
+    console.log(w)
+    if (w) {
+      totally += 7
+    } else {
+      totally += 5
     }
-}
+  }
+  totals.innerText = "Total amount: $" + totally
+});
 
+// if (weekDay.includes(day)) {
+  
+  // } else {
+    //  let weekendPrice = numOfDay.value * 7;
+    //  totals.innerText = "Total amount: $" + weekendPrice 
+    // }
+    
+    let msgDiv = document.querySelector('#msg')
+    validateForm()
+    function removeMessage() {
+      if (msgDiv) {
+        msgDiv.innerHTML = ''
+        formIsValid = true
+      }
+    };
+    
+    function showMessage(message) {
+      msgDiv.innerHTML = `<div class="notification">${message}</div>`
+    };
+    
+    
+    
+    function validateForm() {
+      removeMessage()
+      // validateExp()
+      if (formIsValid) {
+        showMessage('Success, parking is paid for!')
+      }
+    }
+    // for loop needs to go around the number of days for however many of days they are parking. for loop needs to push onto the array that will then check to see if it is a weekend or weekday and then it will add 5 or 7 to the sum
 
 
   
-  submit.addEventListener('click', (e) => {
-  let numOfDay = document.querySelector('#days')
-  let numOfDays = numOfDay.value * 5;
-  totals.innerText = "Total amount: $" + numOfDays
-  });
-  // if (weekDay.includes(day)) {
-   
-  // } else {
-  //  let weekendPrice = numOfDay.value * 7;
-  //  totals.innerText = "Total amount: $" + weekendPrice 
-  // }
+    function isWeekend(day) {
+      let x = day.toDateString().substring(0, 3)
+      if (x === "Sat" || x === "Sun"){
+        return true
+      } else {
+        return false
+      }}
+    //   let i = 0
+    //   let count = 0
+    //   while (i < day) {
+    //     i++;
+    //     if (count === "Sat" || "Sun") {
+    //       count = count + 7 
+    //     }
+    //   }
 
-let msgDiv = document.querySelector('#msg')
-function removeMessage() {
-if (msgDiv) {
-  msgDiv.innerHTML = ''
-  formIsValid = true
-}
-};
 
-function showMessage(message) {
-  msgDiv.innerHTML = `<div class="notification">${message}</div>`
-};
+
+
+      //  for (let today of weekDay) {
+      //  if isWeekend(today) {
+      //   let finalTotal += "7"
+        
+      //  } else {
+      //   finalTotal += "5"
+      //  }
+      //  }
+      
+      // };
+      // let dd = d.getDate()
